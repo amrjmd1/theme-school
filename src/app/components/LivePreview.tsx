@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
-import { Search, Sun, Moon, Plus } from "lucide-react";
+import { Sun, Moon, Plus } from "lucide-react";
 import {
   Card,
   CardHeader,

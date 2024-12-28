@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ColorPicker } from "./components/ColorPicker";
 import { Typography } from "./components/Typography";
@@ -15,6 +13,7 @@ import { TabsList } from "@radix-ui/react-tabs";
 import { Code, Eye } from "lucide-react";
 import Footer from "./components/Footer";
 import ThemeBuilder from "./components/ThemeBuilder";
+
 interface Theme {
   colors: {
     light: Record<string, string>;
