@@ -1,101 +1,183 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ColorPicker } from "./components/ColorPicker";
+import { Typography } from "./components/Typography";
+import { Spacing } from "./components/Spacing";
+import { BorderRadius } from "./components/BorderRadius";
+import { LivePreview } from "./components/LivePreview";
+import { Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
+import { TabsList } from "@radix-ui/react-tabs";
+import { Code, Eye } from "lucide-react";
+import Footer from "./components/Footer";
+import ThemeBuilder from "./components/ThemeBuilder";
+interface Theme {
+  colors: {
+    light: Record<string, string>;
+    dark: Record<string, string>;
+  };
+  typography: {
+    fontFamily: string;
+    fontSize: string;
+    fontWeight: string;
+    lineHeight: string;
+  };
+  spacing: Record<string, number>;
+  borderRadius: Record<string, number>;
+}
+
+export default function ThemeBuilderx() {
+  const [theme, setTheme] = useState<Theme>({
+    colors: {
+      light: {
+        background: "#F4F4F5", // Neutral soft background
+        foreground: "#1A202C", // Rich dark for primary text
+        primary: "#2563EB", // Vibrant professional blue for actions
+        secondary: "#4F46E5", // Deep purple for emphasis
+        accent: "#D97706", // Warm gold for highlights
+        muted: "#9CA3AF", // Neutral muted gray
+        card: "#FFFFFF", // Clean white for cards
+        cardForeground: "#2D3748", // Soft dark text on cards
+        border: "#E2E8F0", // Subtle light border
+      },
+      dark: {
+        background: "#121212", // Near-black for modern dark UI
+        foreground: "#E2E8F0", // Soft light for text
+        primary: "#3B82F6", // Bright blue for contrast in dark mode
+        secondary: "#7C3AED", // Purple for depth and elegance
+        accent: "#FBBF24", // Golden amber for highlights
+        muted: "#6B7280", // Soft muted gray
+        card: "#1E293B", // Dark slate for card backgrounds
+        cardForeground: "#F8FAFC", // Light text for card content
+        border: "#374151", // Subtle dark border
+      },
+    },
+    typography: {
+      fontFamily: "SF Pro, sans-serif",
+      fontSize: "16px",
+      fontWeight: "400",
+      lineHeight: "1.5",
+    },
+    spacing: {
+      small: 0.5,
+      medium: 1,
+      large: 2,
+    },
+    borderRadius: {
+      small: 0.25,
+      medium: 0.5,
+      large: 1,
+    },
+  });
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const updateTheme = (
+    section: keyof Theme,
+    mode: "light" | "dark" | undefined,
+    key: string,
+    value: string | number
+  ) => {
+    setTheme((prevTheme) => {
+      if (section === "colors" && mode) {
+        // Updating colors with mode
+        return {
+          ...prevTheme,
+          colors: {
+            ...prevTheme.colors,
+            [mode]: {
+              ...prevTheme.colors[mode],
+              [key]: value,
+            },
+          },
+        };
+      } else if (section !== "colors") {
+        // Updating other sections
+        return {
+          ...prevTheme,
+          [section]: {
+            ...prevTheme[section],
+            [key]: value,
+          },
+        };
+      }
+      return prevTheme; // No changes
+    });
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className={`min-h-screen p-8 bg-gray-100 text-black`}>
+      <h1 className="text-3xl font-bold text-center mb-8">
+        Next.js Theme Builder
+      </h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <div className="grid grid-cols-1 lg:grid-cols-[400px,1fr] gap-8">
+        <Card className="h-[calc(100vh-12rem)] overflow-hidden">
+          <ScrollArea className="h-full">
+            <CardContent className="p-6 space-y-8">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Colors</h2>
+                <ColorPicker colors={theme.colors} updateTheme={updateTheme} />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Typography</h2>
+                <Typography
+                  typography={theme.typography}
+                  updateTheme={updateTheme}
+                />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Spacing</h2>
+                <Spacing spacing={theme.spacing} updateTheme={updateTheme} />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Border Radius</h2>
+                <BorderRadius
+                  borderRadius={theme.borderRadius}
+                  updateTheme={updateTheme}
+                />
+              </div>
+            </CardContent>
+          </ScrollArea>
+        </Card>
+        <Tabs defaultValue="preview">
+          <div className="flex items-center space-x-2 justify-between">
+            <TabsList className="g">
+              <TabsTrigger value="preview">
+                <Eye className="h-4 w-4 me-2" /> Preview
+              </TabsTrigger>
+              <TabsTrigger value="code">
+                <Code className="h-4 w-4 me-2" /> Code
+              </TabsTrigger>
+            </TabsList>
+          </div>
+          <TabsContent value="preview" className="mt-4">
+            <Card className="h-[calc(100vh-15rem)] overflow-hidden">
+              {/* <ScrollArea className="h-full"> */}
+                <CardContent className="p-0 h-full">
+                  <LivePreview
+                    theme={theme}
+                    isDarkMode={isDarkMode}
+                    onToggleDarkMode={setIsDarkMode}
+                  />
+                </CardContent>
+              {/* </ScrollArea> */}
+            </Card>
+          </TabsContent>
+          <TabsContent value="code" className="mt-4">
+            {/* <CodePreview theme={theme} isDarkMode={isDarkMode} /> */}
+            <Card className="h-[calc(100vh-15rem)] overflow-hidden">
+              {/* <CodePreview theme={theme} isDarkMode={isDarkMode} /> */}
+              <ThemeBuilder theme={theme} isDarkMode={isDarkMode} />
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
+      <Footer />
     </div>
   );
 }
