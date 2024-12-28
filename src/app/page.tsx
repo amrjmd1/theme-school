@@ -76,7 +76,7 @@ export default function ThemeBuilderx() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const updateTheme = (
-    section: keyof Theme,
+    section: string,
     mode: "light" | "dark" | undefined,
     key: string,
     value: string | number
@@ -99,7 +99,7 @@ export default function ThemeBuilderx() {
         return {
           ...prevTheme,
           [section]: {
-            ...prevTheme[section],
+            ...prevTheme[section as keyof Theme],
             [key]: value,
           },
         };

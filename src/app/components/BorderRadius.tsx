@@ -1,23 +1,28 @@
-import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
-import { useState, useEffect } from 'react'
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { useState, useEffect } from "react";
 
 interface BorderRadiusProps {
-  borderRadius: Record<string, number>
-  updateTheme: (section: string, key: string, value: number) => void
+  borderRadius: Record<string, number>;
+  updateTheme: (
+    section: string,
+    mode: "light" | "dark" | undefined,
+    key: string,
+    value: number
+  ) => void;
 }
 
 export function BorderRadius({ borderRadius, updateTheme }: BorderRadiusProps) {
-  const [localBorderRadius, setLocalBorderRadius] = useState(borderRadius)
+  const [localBorderRadius, setLocalBorderRadius] = useState(borderRadius);
 
   useEffect(() => {
-    setLocalBorderRadius(borderRadius)
-  }, [borderRadius])
+    setLocalBorderRadius(borderRadius);
+  }, [borderRadius]);
 
   const handleValueChange = (key: string, newValue: number) => {
-    setLocalBorderRadius(prev => ({ ...prev, [key]: newValue }))
-    updateTheme('borderRadius',undefined, key, newValue)
-  }
+    setLocalBorderRadius((prev) => ({ ...prev, [key]: newValue }));
+    updateTheme("borderRadius", undefined, key, newValue);
+  };
 
   return (
     <div className="space-y-6">
@@ -38,6 +43,5 @@ export function BorderRadius({ borderRadius, updateTheme }: BorderRadiusProps) {
         </div>
       ))}
     </div>
-  )
+  );
 }
-

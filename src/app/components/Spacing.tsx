@@ -4,7 +4,12 @@ import { useState, useEffect } from 'react'
 
 interface SpacingProps {
   spacing: Record<string, number>
-  updateTheme: (section: string, key: string, value: number) => void
+  updateTheme: (
+    section: string,
+    mode: "light" | "dark" | undefined,
+    key: string,
+    value: number
+  ) => void;
 }
 
 export function Spacing({ spacing, updateTheme }: SpacingProps) {

@@ -12,7 +12,6 @@ import {
 import { Tooltip } from "@radix-ui/react-tooltip";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { Button } from "@/components/ui/button";
 
 interface CodePreviewProps {
   code: string;

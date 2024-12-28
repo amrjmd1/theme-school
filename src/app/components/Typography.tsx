@@ -10,7 +10,12 @@ interface TypographyProps {
     fontWeight: string;
     lineHeight: string;
   }
-  updateTheme: (section: string, key: string, value: string | number) => void
+  updateTheme: (
+    section: string,
+    mode: "light" | "dark" | undefined,
+    key: string,
+    value: number | string
+  ) => void;
 }
 
 export function Typography({ typography, updateTheme }: TypographyProps) {
