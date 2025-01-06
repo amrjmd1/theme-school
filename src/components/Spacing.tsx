@@ -30,13 +30,13 @@ export function Spacing({ spacing, updateTheme }: SpacingProps) {
         <div key={key} className="space-y-2">
           <div className="flex justify-between">
             <Label htmlFor={key}>{key}</Label>
-            <span>{value?.toFixed(2)}rem</span>
+            <span>{value?.toFixed(0)}px</span>
           </div>
           <Slider
             id={key}
             min={0}
-            max={3}
-            step={0.1}
+            max={100}
+            step={1}
             value={[value]}
             onValueChange={([newValue]) => handleValueChange(key, newValue)}
           />

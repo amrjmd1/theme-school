@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Theme Builder",
-  description: "Discover the ultimate Next.js Theme Builder! Simplify your development process with customizable <ThemeProvider /> configurations using intuitive controls and inputs. Perfect for developers seeking flexibility and efficiency in theme design",
+  title: "Theme school",
+  description:
+    "Discover the ultimate Theme Builder! Simplify your development process with customizable <ThemeProvider /> configurations using intuitive controls and inputs. Perfect for developers seeking flexibility and efficiency in theme design",
 };
 
 export default function RootLayout({

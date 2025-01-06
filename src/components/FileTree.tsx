@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ChevronRight, ChevronDown, FileText } from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
+import FileIcon from "./FileIcon";
 
 interface FileNode {
   name: string;
@@ -13,7 +14,14 @@ interface FileTreeProps {
 }
 
 export function FileTree({ files, onSelect }: FileTreeProps) {
-  const [openFolders, setOpenFolders] = useState<string[]>(['app']);
+  const [openFolders, setOpenFolders] = useState<string[]>([
+    "Your App",
+    "src",
+    "components",
+    "context",
+    "styles",
+    "app",
+  ]);
 
   const toggleFolder = (folderName: string) => {
     setOpenFolders((prev) =>
@@ -33,7 +41,11 @@ export function FileTree({ files, onSelect }: FileTreeProps) {
               className="flex items-center cursor-pointer text-gray-400 hover:text-gray-50"
               onClick={() => toggleFolder(node.name)}
             >
-              {isOpen ? <ChevronDown size={16} color="gray"/> : <ChevronRight size={16}color="gray" />}
+              {isOpen ? (
+                <ChevronDown size={16} color="gray" />
+              ) : (
+                <ChevronRight size={16} color="gray" />
+              )}
               <span className="ml-2">{node.name}</span>
             </div>
             {isOpen && (
@@ -48,7 +60,7 @@ export function FileTree({ files, onSelect }: FileTreeProps) {
           className="flex items-center cursor-pointer text-sm text-gray-400 hover:text-gray-50"
           onClick={() => onSelect(node.name)}
         >
-          <FileText size={16} color="gray"/>
+          <FileIcon filename={node.name} width={14} height={14} />
           <span className="ml-2">{node.name}</span>
         </div>
       );

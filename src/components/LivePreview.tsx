@@ -35,27 +35,28 @@ export function LivePreview({
   const containerStyle = {
     backgroundColor: colors.background,
     color: colors.foreground,
-    fontFamily: typography.fontFamily,
+    fontFamily: typography.sans,
     fontSize: typography.fontSize,
-    fontWeight: typography.fontWeight,
-    lineHeight: typography.lineHeight,
+    fontWeight: typography.fontWeight_normal,
+    lineHeight: typography.lineHeight_normal,
   };
 
   const navbarStyle = {
     backgroundColor: colors.card,
     color: colors.foreground,
-    padding: `${spacing.small}rem ${spacing.medium}rem`,
+    padding: `${spacing.sm}px ${spacing.lg}px`,
     borderBottom: `1px solid ${colors.border}`,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    fontFamily: typography.heading,
   };
 
   const sidebarStyle = {
     backgroundColor: colors.card,
     color: colors.foreground,
     borderRight: `1px solid ${colors.border}`,
-    padding: `${spacing.small}rem`,
+    padding: `${spacing.sm}px`,
     width: "16rem",
     height: "100%",
   };
@@ -64,8 +65,8 @@ export function LivePreview({
     backgroundColor: colors.card,
     color: colors.cardForeground,
     borderColor: colors.border,
-    borderRadius: `${borderRadius.medium}rem`,
-    padding: `${spacing.small}rem`,
+    borderRadius: `${borderRadius.md}px`,
+    padding: `${spacing.sm}px`,
   };
 
   const buttonStyle = {
@@ -73,12 +74,11 @@ export function LivePreview({
     backgroundColor: "transparent",
     border: `.3px solid ${colors.primary}`,
     color: colors.primary,
-    borderRadius: `${borderRadius.small}rem`,
-    padding: `${spacing.small}rem ${spacing.medium}rem`,
+    borderRadius: `${borderRadius.sm}px`,
+    padding: `${spacing.sm}px ${spacing.lg}px`,
     display: "flex",
     alignItems: "center",
     transition: "all 0.2s ease-in-out",
-    fontSize:typography.fontSize
   };
 
   const hoverStyle = {
@@ -96,10 +96,10 @@ export function LivePreview({
           <h2
             style={{
               color: colors.accent,
-              fontSize: typography.fontSize,
-              fontWeight: "bold",
+              fontWeight: typography.fontWeight_bold,
               textAlign: "center",
-              padding: `${spacing.small}rem`,
+              padding: `${spacing.md}px`,
+              fontFamily: typography.heading,
             }}
           >
             LOGO
@@ -129,7 +129,7 @@ export function LivePreview({
             Welcome Back!
           </h1>
           <div className="flex items-center">
-            <div style={{ margin: `0 ${spacing.small}rem` }}>
+            <div style={{ margin: `0 ${spacing.sm}px` }}>
               <Input
                 placeholder="Search..."
                 style={{
@@ -150,7 +150,7 @@ export function LivePreview({
                 onCheckedChange={onToggleDarkMode}
                 style={{
                   backgroundColor: isDarkMode ? colors.primary : colors.muted,
-                  margin: `0 ${spacing.small}rem`,
+                  margin: `0 ${spacing.sm}px`,
                 }}
               />
               <Moon
@@ -163,7 +163,7 @@ export function LivePreview({
         <div
           className="flex flex-wrap"
           style={{
-            padding: `${spacing.medium}rem ${spacing.large}rem 0`,
+            padding: `${spacing.md}px ${spacing.lg}px 0`,
           }}
         >
           {/* Statistics Cards */}
@@ -182,7 +182,7 @@ export function LivePreview({
           </Card>
 
           <Card
-            style={{ ...cardStyle, margin: `0rem ${spacing.medium}rem` }}
+            style={{ ...cardStyle, margin: `0 ${spacing.md}px` }}
             className="flex-1 min-w-[12rem]"
           >
             <CardHeader className="p-0 m-0">
@@ -216,7 +216,7 @@ export function LivePreview({
         {/* Table */}
         <div
           style={{
-            padding: `${spacing.medium}rem ${spacing.large}rem`,
+            padding: `${spacing.md}px ${spacing.lg}px`,
           }}
         >
           <Card style={cardStyle}>

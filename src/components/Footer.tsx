@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import { Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-muted py-4">
+    <footer className="bg-muted py-4 px-6">
       <div className=" mx-auto flex items-center gap-4 text-sm text-gray-600">
         <p>
           Made with ❤️ by{" "}
@@ -46,6 +47,18 @@ const Footer = () => {
         >
           <Twitter className="w-5 h-5" />
         </Link>
+        <script
+          data-name="BMC-Widget"
+          // data-cfasync="false"
+          src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+          data-id="devamrdar"
+          data-description="Support me on Buy me a coffee!"
+          data-message=""
+          data-color="#5F7FFF"
+          data-position="Right"
+          data-x_margin="18"
+          data-y_margin="18"
+        />
       </div>
     </footer>
   );
