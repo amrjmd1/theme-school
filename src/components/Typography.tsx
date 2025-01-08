@@ -66,24 +66,6 @@ export function Typography({ typography, updateTheme }: TypographyProps) {
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor="fontFamily">Sans</Label>
-        <Select
-          onValueChange={(value) => handleValueChange("sans", value)}
-          value={localTypography.sans}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder={localTypography.sans} />
-          </SelectTrigger>
-          <SelectContent>
-            {fontFamilies.map((font) => (
-              <SelectItem key={font} value={font} style={{ fontFamily: font }}>
-                {font}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <div>
         <Label htmlFor="fontFamily">Heading</Label>
         <Select
           onValueChange={(value) => handleValueChange("heading", value)}
@@ -101,6 +83,25 @@ export function Typography({ typography, updateTheme }: TypographyProps) {
           </SelectContent>
         </Select>
       </div>
+      <div>
+        <Label htmlFor="fontFamily">Sans</Label>
+        <Select
+          onValueChange={(value) => handleValueChange("sans", value)}
+          value={localTypography.sans}
+        >
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder={localTypography.sans} />
+          </SelectTrigger>
+          <SelectContent>
+            {fontFamilies.map((font) => (
+              <SelectItem key={font} value={font} style={{ fontFamily: font }}>
+                {font}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
       <h3 className="text-xl font-bold mb-2">Font Weight</h3>
       <div className="space-y-2">
         <Label htmlFor="fontWeightLight">Light</Label>
@@ -188,11 +189,12 @@ export function Typography({ typography, updateTheme }: TypographyProps) {
               handleValueChange("lineHeight_normal", value?.toFixed(1))
             }
           />
-          <span className="w-12 text-right">{localTypography.lineHeight_normal}</span>
+          <span className="w-12 text-right">
+            {localTypography.lineHeight_normal}
+          </span>
         </div>
       </div>
 
-      
       <div className="space-y-2">
         <Label htmlFor="lineHeight">relaxed</Label>
         <div className="flex items-center space-x-2">
@@ -206,25 +208,29 @@ export function Typography({ typography, updateTheme }: TypographyProps) {
               handleValueChange("lineHeight_relaxed", value?.toFixed(1))
             }
           />
-          <span className="w-12 text-right">{localTypography.lineHeight_relaxed}</span>
+          <span className="w-12 text-right">
+            {localTypography.lineHeight_relaxed}
+          </span>
         </div>
         <div className="space-y-2">
-        <Label htmlFor="lineHeight">tight</Label>
-        <div className="flex items-center space-x-2">
-          <Slider
-            id="lineHeight"
-            min={1}
-            max={2}
-            step={0.1}
-            value={[parseLineHeight(localTypography.lineHeight_tight)]}
-            onValueChange={([value]) =>
-              handleValueChange("lineHeight_tight", value?.toFixed(1))
-            }
-          />
-          <span className="w-12 text-right">{localTypography.lineHeight_tight}</span>
+          <Label htmlFor="lineHeight">tight</Label>
+          <div className="flex items-center space-x-2">
+            <Slider
+              id="lineHeight"
+              min={1}
+              max={2}
+              step={0.1}
+              value={[parseLineHeight(localTypography.lineHeight_tight)]}
+              onValueChange={([value]) =>
+                handleValueChange("lineHeight_tight", value?.toFixed(1))
+              }
+            />
+            <span className="w-12 text-right">
+              {localTypography.lineHeight_tight}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

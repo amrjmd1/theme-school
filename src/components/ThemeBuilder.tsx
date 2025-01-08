@@ -21,6 +21,7 @@ interface Theme {
   };
   spacing: Record<string, number>;
   borderRadius: Record<string, number>;
+  borderWidth: Record<string, number>;
 }
 
 interface ThemeBuilderProps {
@@ -106,6 +107,12 @@ export default function ThemeBuilder({ theme }: ThemeBuilderProps) {
         md: "${theme.borderRadius.md}px",
         lg: "${theme.borderRadius.lg}px",
         xl: "${theme.borderRadius.xl}px",
+      },
+      borderWidth: {
+        sm: "${theme.borderWidth.sm}px",
+        md: "${theme.borderWidth.md}px",
+        lg: "${theme.borderWidth.lg}px",
+        xl: "${theme.borderWidth.xl}px",
       },
     },
   },

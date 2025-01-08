@@ -1,7 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
-import { Sun, Moon, Plus } from "lucide-react";
+import {
+  Sun,
+  Moon,
+  Plus,
+  AlertCircleIcon,
+  Gauge,
+  ChartScatter,
+  Users,
+  User,
+  Settings,
+  LogOut,
+} from "lucide-react";
 import {
   Card,
   CardHeader,
@@ -19,6 +30,7 @@ interface LivePreviewProps {
     typography: Record<string, string>;
     spacing: Record<string, number>;
     borderRadius: Record<string, number>;
+    borderWidth: Record<string, number>;
   };
   isDarkMode: boolean;
   onToggleDarkMode: (value: boolean) => void;
@@ -29,7 +41,7 @@ export function LivePreview({
   isDarkMode,
   onToggleDarkMode,
 }: LivePreviewProps) {
-  const { typography, spacing, borderRadius } = theme;
+  const { typography, spacing, borderRadius, borderWidth } = theme;
   const colors = isDarkMode ? theme.colors.dark : theme.colors.light;
 
   const containerStyle = {
@@ -45,7 +57,7 @@ export function LivePreview({
     backgroundColor: colors.card,
     color: colors.foreground,
     padding: `${spacing.sm}px ${spacing.lg}px`,
-    borderBottom: `1px solid ${colors.border}`,
+    borderBottom: `${borderWidth.md}px solid ${colors.border}`,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -55,8 +67,7 @@ export function LivePreview({
   const sidebarStyle = {
     backgroundColor: colors.card,
     color: colors.foreground,
-    borderRight: `1px solid ${colors.border}`,
-    padding: `${spacing.sm}px`,
+    borderRight: `${borderWidth.md}px solid ${colors.border}`,
     width: "16rem",
     height: "100%",
   };
@@ -65,14 +76,15 @@ export function LivePreview({
     backgroundColor: colors.card,
     color: colors.cardForeground,
     borderColor: colors.border,
+    borderWidth: `${borderWidth.lg}px`,
     borderRadius: `${borderRadius.md}px`,
     padding: `${spacing.sm}px`,
   };
 
   const buttonStyle = {
-    margin:0,
+    margin: 0,
     backgroundColor: "transparent",
-    border: `.3px solid ${colors.primary}`,
+    border: `${borderWidth.sm}px solid ${colors.primary}`,
     color: colors.primary,
     borderRadius: `${borderRadius.sm}px`,
     padding: `${spacing.sm}px ${spacing.lg}px`,
@@ -105,26 +117,84 @@ export function LivePreview({
             LOGO
           </h2>
 
-          <nav className="space-y-2">
-            <Button variant="ghost" className="w-full">
-              Overview
-            </Button>
-            <Button variant="ghost" className="w-full">
-              Analytics
-            </Button>
-            <Button variant="ghost" className="w-full">
-              Settings
-            </Button>
-            <Button variant="ghost" className="w-full">
-              Profile
-            </Button>
+          <nav
+            style={{
+              padding: `${spacing["2xl"]}px 0`,
+            }}
+          >
+            {[
+              { icon: Gauge, text: "Overview", isActive: true },
+              { icon: ChartScatter, text: "Analytics" },
+              { icon: Users, text: "Users" },
+              { icon: User, text: "Profile" },
+              { icon: Settings, text: "Settings" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="w-full flex items-center"
+                style={{
+                  padding: `${spacing.sm}px ${spacing.lg}px`,
+                  borderRight: `${item.isActive ? borderWidth.xl : 0}px solid ${
+                    colors.accent
+                  }`,
+                }}
+              >
+                <item.icon
+                  size={18}
+                  color={colors[item.isActive ? "accent" : "muted"]}
+                />
+                <span
+                  style={{
+                    marginLeft: spacing.lg + "px",
+                    color: colors[item.isActive ? "accent" : "muted"],
+                    fontWeight:
+                      typography[
+                        `fontWeight_${item.isActive ? "bold" : "normal"}`
+                      ],
+                  }}
+                >
+                  {item.text}
+                </span>
+              </div>
+            ))}
           </nav>
         </div>
-        <Button variant="ghost">Logout</Button>
+        <div style={{ padding: `${spacing["2xl"]}px 0` }}>
+          <div
+            className="w-full flex items-center"
+            style={{
+              padding: `${spacing.sm}px ${spacing.lg}px`,
+            }}
+          >
+            <LogOut size={18} color={colors.muted} />
+            <span
+              style={{
+                marginLeft: spacing.lg + "px",
+                color: colors.muted,
+                fontWeight: typography.normal,
+              }}
+            >
+              Logout
+            </span>
+          </div>
+        </div>
       </aside>
 
-      <div className="flex-grow flex flex-col">
-        <div style={navbarStyle} className="shadow-sm">
+      <div className="flex-grow flex flex-col relative">
+        <div
+          style={{
+            position: "absolute",
+            bottom: spacing.md + "px",
+            right: spacing.lg + "px",
+            backgroundColor: colors.card,
+            borderRadius: borderRadius.xl + "px",
+            padding: spacing.sm + "px",
+            border: `${borderWidth.md}px solid ${colors.border}`,
+          }}
+        >
+          <AlertCircleIcon color={colors.accent} />
+        </div>
+        <div style={navbarStyle}>
           <h1 style={{ color: colors.primary, fontWeight: "bold" }}>
             Welcome Back!
           </h1>
@@ -136,7 +206,9 @@ export function LivePreview({
                   backgroundColor: colors.card,
                   borderColor: colors.muted,
                   color: colors.foreground,
-                  borderRadius: `${borderRadius.small}rem`,
+                  borderRadius: `${borderRadius.sm}px`,
+                  fontFamily: typography.sans,
+                  borderWidth: `${borderWidth.sm}px`,
                 }}
               />
             </div>
@@ -163,67 +235,52 @@ export function LivePreview({
         <div
           className="flex flex-wrap"
           style={{
-            padding: `${spacing.md}px ${spacing.lg}px 0`,
+            padding: `${spacing.xl}px ${spacing["2xl"]}px 0`,
+            gap: spacing.lg + "px",
           }}
         >
-          {/* Statistics Cards */}
-          <Card style={cardStyle} className="flex-1">
-            <CardHeader className="p-0 m-0">
-              <CardTitle>Users</CardTitle>
-              <CardDescription>+20% this month</CardDescription>
-            </CardHeader>
-            <CardContent className="p-0 m-0">
-              <h3
-                style={{ fontSize: typography.fontSize, color: colors.accent }}
+          {[
+            { title: "Total Revenue", value: "$12,345" },
+            { title: "Users", value: "$12,345" },
+            { title: "Orders", value: "$12,345" },
+          ].map((item, index) => (
+            <Card
+              key={index}
+              style={cardStyle}
+              className="flex-1 min-w-[12rem]"
+            >
+              <CardHeader className="p-0 m-0">
+                <CardTitle>{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent
+                className="p-0 m-0"
+                style={{
+                  padding: `${spacing.md}px ${spacing.lg}px 0`,
+                }}
               >
-                1,245
-              </h3>
-            </CardContent>
-          </Card>
-
-          <Card
-            style={{ ...cardStyle, margin: `0 ${spacing.md}px` }}
-            className="flex-1 min-w-[12rem]"
-          >
-            <CardHeader className="p-0 m-0">
-              <CardTitle>Revenue</CardTitle>
-              <CardDescription>+15% this month</CardDescription>
-            </CardHeader>
-            <CardContent className="p-0 m-0">
-              <h3
-                style={{ fontSize: typography.fontSize, color: colors.accent }}
-              >
-                $12,345
-              </h3>
-            </CardContent>
-          </Card>
-
-          <Card style={cardStyle} className="flex-1 min-w-[12rem]">
-            <CardHeader className="p-0 m-0">
-              <CardTitle>Orders</CardTitle>
-              <CardDescription>+10% this month</CardDescription>
-            </CardHeader>
-            <CardContent className="p-0 m-0">
-              <h3
-                style={{ fontSize: typography.fontSize, color: colors.accent }}
-              >
-                567
-              </h3>
-            </CardContent>
-          </Card>
+                <span>+20% this month</span>
+                <h3
+                  style={{
+                    fontSize: "22px",
+                    color: colors.accent,
+                    fontWeight: typography.fontWeight_bold,
+                  }}
+                >
+                  {item.value}
+                </h3>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        {/* Table */}
         <div
           style={{
-            padding: `${spacing.md}px ${spacing.lg}px`,
+            padding: `${spacing.xl}px ${spacing["2xl"]}px 0`,
           }}
         >
           <Card style={cardStyle}>
             <CardHeader className="flex flex-row justify-between p-0">
-              <CardTitle className="m-0 p-0">
-                Recent Transactions
-              </CardTitle>
+              <CardTitle className="m-0 p-0">Recent Transactions</CardTitle>
               <Button
                 style={buttonStyle}
                 onMouseEnter={(e) => {
@@ -233,21 +290,34 @@ export function LivePreview({
                   Object.assign(e.currentTarget.style, buttonStyle);
                 }}
               >
-       
                 <Plus />
-                New Transactions 
+                New Transactions
               </Button>
             </CardHeader>
             <CardContent className="p-0">
               <table className="w-full text-left">
-                <thead>
+                <thead
+                  style={{
+                    lineHeight: typography.lineHeight_tight,
+                  }}
+                >
                   <tr>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Status</th>
+                    <th style={{ fontWeight: typography.fontWeight_bold }}>
+                      Name
+                    </th>
+                    <th style={{ fontWeight: typography.fontWeight_bold }}>
+                      Amount
+                    </th>
+                    <th style={{ fontWeight: typography.fontWeight_bold }}>
+                      Status
+                    </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody
+                  style={{
+                    lineHeight: typography.lineHeight_relaxed,
+                  }}
+                >
                   <tr>
                     <td>John Doe</td>
                     <td>$500</td>

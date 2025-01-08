@@ -14,6 +14,7 @@ import { Code, Eye } from "lucide-react";
 import Footer from "@/components/Footer";
 import ThemeBuilder from "@/components/ThemeBuilder";
 import Header from "@/components/Header";
+import { BorderWidth } from "@/components/borderWidth";
 
 interface Theme {
   colors: {
@@ -34,6 +35,7 @@ interface Theme {
   };
   spacing: Record<string, number>;
   borderRadius: Record<string, number>;
+  borderWidth: Record<string, number>;
 }
 
 export default function ThemeBuilderx() {
@@ -86,6 +88,12 @@ export default function ThemeBuilderx() {
       md: 8,
       lg: 16,
       xl: 24,
+    },
+    borderWidth: {
+      sm: 0.3,
+      md: 0.5,
+      lg: 0.9,
+      xl: 2.4,
     },
   });
 
@@ -149,6 +157,13 @@ export default function ThemeBuilderx() {
                 <h2 className="text-2xl font-bold mb-4">Border Radius</h2>
                 <BorderRadius
                   borderRadius={theme.borderRadius}
+                  updateTheme={updateTheme}
+                />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Border Width</h2>
+                <BorderWidth
+                  borderWidth={theme.borderWidth}
                   updateTheme={updateTheme}
                 />
               </div>
