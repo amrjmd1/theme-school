@@ -13,13 +13,7 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 interface LivePreviewProps {
   theme: {
@@ -79,27 +73,32 @@ export function LivePreview({
     borderWidth: `${borderWidth.lg}px`,
     borderRadius: `${borderRadius.md}px`,
     padding: `${spacing.sm}px`,
+    boxShadow: `0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)`,
   };
 
   const buttonStyle = {
     margin: 0,
-    backgroundColor: "transparent",
-    border: `${borderWidth.sm}px solid ${colors.primary}`,
-    color: colors.primary,
+    backgroundColor: colors.primary,
+    border: "none",
+    color: colors.background,
     borderRadius: `${borderRadius.sm}px`,
     padding: `${spacing.sm}px ${spacing.lg}px`,
     display: "flex",
     alignItems: "center",
+    gap: spacing.sm + "px",
     transition: "all 0.2s ease-in-out",
+    cursor: "pointer",
   };
 
   const hoverStyle = {
-    backgroundColor: colors.primary,
-    color: colors.background,
+    backgroundColor: colors.secondary,
+    transform: "translateY(-1px)",
+    boxShadow: `0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)`,
   };
 
   return (
     <div style={containerStyle} className="flex h-full overflow-hidden">
+      {/* Sidebar */}
       <aside
         style={sidebarStyle}
         className="flex flex-col space-y-4 justify-between"
@@ -107,11 +106,12 @@ export function LivePreview({
         <div>
           <h2
             style={{
-              color: colors.accent,
+              color: colors.primary,
               fontWeight: typography.fontWeight_bold,
               textAlign: "center",
               padding: `${spacing.md}px`,
               fontFamily: typography.heading,
+              fontSize: "1.5rem",
             }}
           >
             LOGO
@@ -131,22 +131,24 @@ export function LivePreview({
             ].map((item, index) => (
               <div
                 key={index}
-                className="w-full flex items-center"
+                className="w-full flex items-center hover:opacity-55"
                 style={{
                   padding: `${spacing.sm}px ${spacing.lg}px`,
                   borderRight: `${item.isActive ? borderWidth.xl : 0}px solid ${
                     colors.accent
                   }`,
+                  cursor: "pointer",
+                  transition: "all 0.2s ease-in-out",
                 }}
               >
                 <item.icon
                   size={18}
-                  color={colors[item.isActive ? "accent" : "muted"]}
+                  color={colors[item.isActive ? "primary" : "muted"]}
                 />
                 <span
                   style={{
                     marginLeft: spacing.lg + "px",
-                    color: colors[item.isActive ? "accent" : "muted"],
+                    color: colors[item.isActive ? "primary" : "muted"],
                     fontWeight:
                       typography[
                         `fontWeight_${item.isActive ? "bold" : "normal"}`
@@ -161,9 +163,11 @@ export function LivePreview({
         </div>
         <div style={{ padding: `${spacing["2xl"]}px 0` }}>
           <div
-            className="w-full flex items-center"
+            className="w-full flex items-center hover:opacity-55"
             style={{
               padding: `${spacing.sm}px ${spacing.lg}px`,
+              cursor: "pointer",
+              transition: "all 0.2s ease-in-out",
             }}
           >
             <LogOut size={18} color={colors.muted} />
@@ -171,7 +175,7 @@ export function LivePreview({
               style={{
                 marginLeft: spacing.lg + "px",
                 color: colors.muted,
-                fontWeight: typography.normal,
+                fontWeight: typography.fontWeight_normal,
               }}
             >
               Logout
@@ -180,7 +184,9 @@ export function LivePreview({
         </div>
       </aside>
 
+      {/* Main Content */}
       <div className="flex-grow flex flex-col relative">
+        {/* Floating Alert Icon */}
         <div
           style={{
             position: "absolute",
@@ -190,10 +196,15 @@ export function LivePreview({
             borderRadius: borderRadius.xl + "px",
             padding: spacing.sm + "px",
             border: `${borderWidth.md}px solid ${colors.border}`,
+            cursor: "pointer",
+            transition: "transform 0.2s ease-in-out",
           }}
+          className="hover:scale-105"
         >
-          <AlertCircleIcon color={colors.accent} />
+          <AlertCircleIcon color={colors.secondary} />
         </div>
+
+        {/* Navbar */}
         <div style={navbarStyle}>
           <h1 style={{ color: colors.primary, fontWeight: "bold" }}>
             Welcome Back!
@@ -232,6 +243,7 @@ export function LivePreview({
           </div>
         </div>
 
+        {/* Cards Section */}
         <div
           className="flex flex-wrap"
           style={{
@@ -247,7 +259,7 @@ export function LivePreview({
             <Card
               key={index}
               style={cardStyle}
-              className="flex-1 min-w-[12rem]"
+              className="flex-1 min-w-[12rem] hover:scale-105 transition-transform"
             >
               <CardHeader className="p-0 m-0">
                 <CardTitle>{item.title}</CardTitle>
@@ -262,7 +274,7 @@ export function LivePreview({
                 <h3
                   style={{
                     fontSize: "22px",
-                    color: colors.accent,
+                    color: colors.secondary,
                     fontWeight: typography.fontWeight_bold,
                   }}
                 >
@@ -273,6 +285,7 @@ export function LivePreview({
           ))}
         </div>
 
+        {/* Recent Transactions */}
         <div
           style={{
             padding: `${spacing.xl}px ${spacing["2xl"]}px 0`,

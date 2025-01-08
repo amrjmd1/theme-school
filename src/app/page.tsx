@@ -40,61 +40,61 @@ interface Theme {
 
 export default function ThemeBuilderx() {
   const [theme, setTheme] = useState<Theme>({
-    colors: {
-      light: {
-        background: "#F4F4F5",
-        foreground: "#1A202C",
-        primary: "#2563EB",
-        secondary: "#4F46E5",
-        accent: "#D97706",
-        muted: "#9CA3AF",
-        card: "#FFFFFF",
-        cardForeground: "#2D3748",
-        border: "#E2E8F0",
+    "colors": {
+      "light": {
+        "background": "#F0F2F5", // Facebook's light background
+        "foreground": "#1C1E21", // Facebook's dark text color
+        "primary": "#1877F2", // Facebook's primary blue
+        "secondary": "#42B72A", // Facebook's green (used for buttons like "Create Post")
+        "accent": "#F0F2F5", // Light gray for accents
+        "muted": "#606770", // Muted text color
+        "card": "#FFFFFF", // White for cards
+        "cardForeground": "#1C1E21", // Dark text for cards
+        "border": "#DDDFE2" // Light gray for borders
       },
-      dark: {
-        background: "#121212",
-        foreground: "#E2E8F0",
-        primary: "#3B82F6",
-        secondary: "#7C3AED",
-        accent: "#FBBF24",
-        muted: "#6B7280",
-        card: "#1E293B",
-        cardForeground: "#F8FAFC",
-        border: "#374151",
-      },
+      "dark": {
+        "background": "#18191A", // Facebook's dark background
+        "foreground": "#E4E6EB", // Light text for dark mode
+        "primary": "#1877F2", // Same primary blue
+        "secondary": "#42B72A", // Same green
+        "accent": "#242526", // Dark gray for accents
+        "muted": "#B0B3B8", // Muted text in dark mode
+        "card": "#242526", // Dark gray for cards
+        "cardForeground": "#E4E6EB", // Light text for cards
+        "border": "#3A3B3C" // Darker gray for borders
+      }
     },
-    typography: {
-      sans: "SF Pro",
-      heading: "Georgia",
-      fontSize: "16px",
-      fontWeight_light: "300",
-      fontWeight_normal: "400",
-      fontWeight_semibold: "600",
-      fontWeight_bold: "700",
-      lineHeight_normal: "1.5",
-      lineHeight_relaxed: "1.75",
-      lineHeight_tight: "1.25",
+    "typography": {
+      "sans": "Helvetica", // Facebook's default font stack
+      "heading": "Helvetica", // Same for headings
+      "fontSize": "16px", // Base font size
+      "fontWeight_light": "300",
+      "fontWeight_normal": "400",
+      "fontWeight_semibold": "600",
+      "fontWeight_bold": "700",
+      "lineHeight_normal": "1.5",
+      "lineHeight_relaxed": "1.75",
+      "lineHeight_tight": "1.25"
     },
-    spacing: {
-      sm: 8,
-      md: 16,
-      lg: 24,
-      xl: 32,
-      "2xl": 40,
+    "spacing": {
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "xl": 32,
+      "2xl": 40
     },
-    borderRadius: {
-      sm: 4,
-      md: 8,
-      lg: 16,
-      xl: 24,
+    "borderRadius": {
+      "sm": 4,
+      "md": 8,
+      "lg": 16,
+      "xl": 24
     },
-    borderWidth: {
-      sm: 0.3,
-      md: 0.5,
-      lg: 0.9,
-      xl: 2.4,
-    },
+    "borderWidth": {
+      "sm": 0.3,
+      "md": 0.5,
+      "lg": 0.9,
+      "xl": 2.4
+    }
   });
 
   const [isDarkMode, setIsDarkMode] = useState(false);
