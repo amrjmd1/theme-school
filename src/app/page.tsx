@@ -10,11 +10,12 @@ import { BorderRadius } from "@/components/BorderRadius";
 import { LivePreview } from "@/components/LivePreview";
 import { Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { TabsList } from "@radix-ui/react-tabs";
-import { Code, Eye } from "lucide-react";
+import { Code, Eye, Frame } from "lucide-react";
 import Footer from "@/components/Footer";
 import ThemeBuilder from "@/components/ThemeBuilder";
 import Header from "@/components/Header";
 import { BorderWidth } from "@/components/borderWidth";
+import { DesignSystemSection } from "@/components/DesignSystemPreview";
 
 interface Theme {
   colors: {
@@ -40,61 +41,61 @@ interface Theme {
 
 export default function ThemeBuilderx() {
   const [theme, setTheme] = useState<Theme>({
-    "colors": {
-      "light": {
-        "background": "#F0F2F5", // Facebook's light background
-        "foreground": "#1C1E21", // Facebook's dark text color
-        "primary": "#1877F2", // Facebook's primary blue
-        "secondary": "#42B72A", // Facebook's green (used for buttons like "Create Post")
-        "accent": "#F0F2F5", // Light gray for accents
-        "muted": "#606770", // Muted text color
-        "card": "#FFFFFF", // White for cards
-        "cardForeground": "#1C1E21", // Dark text for cards
-        "border": "#DDDFE2" // Light gray for borders
+    colors: {
+      light: {
+        background: "#F0F2F5", // Facebook's light background
+        foreground: "#1C1E21", // Facebook's dark text color
+        primary: "#1877F2", // Facebook's primary blue
+        secondary: "#42B72A", // Facebook's green (used for buttons like "Create Post")
+        accent: "#F0F2F5", // Light gray for accents
+        muted: "#606770", // Muted text color
+        card: "#FFFFFF", // White for cards
+        cardForeground: "#1C1E21", // Dark text for cards
+        border: "#DDDFE2", // Light gray for borders
       },
-      "dark": {
-        "background": "#18191A", // Facebook's dark background
-        "foreground": "#E4E6EB", // Light text for dark mode
-        "primary": "#1877F2", // Same primary blue
-        "secondary": "#42B72A", // Same green
-        "accent": "#242526", // Dark gray for accents
-        "muted": "#B0B3B8", // Muted text in dark mode
-        "card": "#242526", // Dark gray for cards
-        "cardForeground": "#E4E6EB", // Light text for cards
-        "border": "#3A3B3C" // Darker gray for borders
-      }
+      dark: {
+        background: "#18191A", // Facebook's dark background
+        foreground: "#E4E6EB", // Light text for dark mode
+        primary: "#1877F2", // Same primary blue
+        secondary: "#42B72A", // Same green
+        accent: "#242526", // Dark gray for accents
+        muted: "#B0B3B8", // Muted text in dark mode
+        card: "#242526", // Dark gray for cards
+        cardForeground: "#E4E6EB", // Light text for cards
+        border: "#3A3B3C", // Darker gray for borders
+      },
     },
-    "typography": {
-      "sans": "Helvetica", // Facebook's default font stack
-      "heading": "Helvetica", // Same for headings
-      "fontSize": "16px", // Base font size
-      "fontWeight_light": "300",
-      "fontWeight_normal": "400",
-      "fontWeight_semibold": "600",
-      "fontWeight_bold": "700",
-      "lineHeight_normal": "1.5",
-      "lineHeight_relaxed": "1.75",
-      "lineHeight_tight": "1.25"
+    typography: {
+      sans: "Helvetica", // Facebook's default font stack
+      heading: "Helvetica", // Same for headings
+      fontSize: "16px", // Base font size
+      fontWeight_light: "300",
+      fontWeight_normal: "400",
+      fontWeight_semibold: "600",
+      fontWeight_bold: "700",
+      lineHeight_normal: "1.5",
+      lineHeight_relaxed: "1.75",
+      lineHeight_tight: "1.25",
     },
-    "spacing": {
-      "sm": 8,
-      "md": 16,
-      "lg": 24,
-      "xl": 32,
-      "2xl": 40
+    spacing: {
+      sm: 8,
+      md: 16,
+      lg: 24,
+      xl: 32,
+      "2xl": 40,
     },
-    "borderRadius": {
-      "sm": 4,
-      "md": 8,
-      "lg": 16,
-      "xl": 24
+    borderRadius: {
+      sm: 4,
+      md: 8,
+      lg: 16,
+      xl: 24,
     },
-    "borderWidth": {
-      "sm": 0.3,
-      "md": 0.5,
-      "lg": 0.9,
-      "xl": 2.4
-    }
+    borderWidth: {
+      sm: 0.3,
+      md: 0.5,
+      lg: 0.9,
+      xl: 2.4,
+    },
   });
 
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -170,9 +171,12 @@ export default function ThemeBuilderx() {
             </CardContent>
           </ScrollArea>
         </Card>
-        <Tabs defaultValue="preview">
+        <Tabs defaultValue="DesignSystem">
           <div className="flex items-center space-x-2 justify-between">
             <TabsList className="g">
+              <TabsTrigger value="DesignSystem">
+                <Frame className="h-4 w-4 me-2" /> Design System
+              </TabsTrigger>
               <TabsTrigger value="preview">
                 <Eye className="h-4 w-4 me-2" /> Preview
               </TabsTrigger>
@@ -181,6 +185,13 @@ export default function ThemeBuilderx() {
               </TabsTrigger>
             </TabsList>
           </div>
+          <TabsContent value="DesignSystem" className="mt-4">
+            <Card className="h-[calc(100vh-15rem)] overflow-hidden">
+              <CardContent className="p-0 h-full">
+                <DesignSystemSection theme={theme} />
+              </CardContent>
+            </Card>
+          </TabsContent>
           <TabsContent value="preview" className="mt-4">
             <Card className="h-[calc(100vh-15rem)] overflow-hidden">
               <CardContent className="p-0 h-full">
