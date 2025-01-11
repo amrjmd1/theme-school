@@ -47,7 +47,7 @@ export default function ThemeBuilderx() {
     typography: {
       heading: "Helvetica", // Same for headings
       sans: "Helvetica", // Facebook's default font stack
-      fontSize: { sm: 4, md: 8, lg: 16, xl: 24 },
+      fontSize: { sm: 8, md: 12, lg: 16, xl: 24 },
       fontWeight_light: "300",
       fontWeight_normal: "400",
       fontWeight_semibold: "600",
