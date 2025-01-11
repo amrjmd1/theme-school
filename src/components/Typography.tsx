@@ -8,25 +8,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState, useEffect } from "react";
+import { FontSize } from "./FontSize";
+import { Typography as TypographyTypes } from "@/types/Theme";
 
 interface TypographyProps {
-  typography: {
-    sans: string;
-    heading: string;
-    fontSize: string;
-    fontWeight_light: string;
-    fontWeight_normal: string;
-    fontWeight_semibold: string;
-    fontWeight_bold: string;
-    lineHeight_normal: string;
-    lineHeight_relaxed: string;
-    lineHeight_tight: string;
-  };
+  typography: TypographyTypes;
   updateTheme: (
     section: string,
     mode: "light" | "dark" | undefined,
     key: string,
-    value: number | string
+    value: number | string,
+    deepKey?: string
   ) => void;
 }
 
@@ -58,9 +50,16 @@ export function Typography({ typography, updateTheme }: TypographyProps) {
   const parseLineHeight = (height: string) => parseFloat(height);
 
   const handleValueChange = (key: string, newValue: string | number) => {
-    console.log(key, newValue);
     setLocalTypography((prev) => ({ ...prev, [key]: newValue }));
     updateTheme("typography", undefined, key, newValue);
+  };
+
+  const handleFontSizeChange = (key: string, newValue: number) => {
+    setLocalTypography((prev) => ({
+      ...prev,
+      fontSize: { ...prev.fontSize, [key]: newValue },
+    }));
+    updateTheme("typography", undefined, "fontSize", newValue, key);
   };
 
   return (
@@ -102,6 +101,11 @@ export function Typography({ typography, updateTheme }: TypographyProps) {
         </Select>
       </div>
 
+      <h3 className="text-xl font-bold mb-2">Font Size</h3>
+      <FontSize
+        fontsize={localTypography.fontSize}
+        updateTheme={handleFontSizeChange}
+      />
       <h3 className="text-xl font-bold mb-2">Font Weight</h3>
       <div className="space-y-2">
         <Label htmlFor="fontWeightLight">Light</Label>

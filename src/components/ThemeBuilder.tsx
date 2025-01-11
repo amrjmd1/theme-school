@@ -1,28 +1,7 @@
 import { useState } from "react";
 import { FileTree } from "./FileTree";
 import { CodePreview } from "./CodePreview";
-
-interface Theme {
-  colors: {
-    light: Record<string, string>;
-    dark: Record<string, string>;
-  };
-  typography: {
-    sans: string;
-    heading: string;
-    fontSize: string;
-    fontWeight_light: string;
-    fontWeight_normal: string;
-    fontWeight_semibold: string;
-    fontWeight_bold: string;
-    lineHeight_normal: string;
-    lineHeight_relaxed: string;
-    lineHeight_tight: string;
-  };
-  spacing: Record<string, number>;
-  borderRadius: Record<string, number>;
-  borderWidth: Record<string, number>;
-}
+import Theme from "@/types/Theme";
 
 interface ThemeBuilderProps {
   theme: Theme;
@@ -83,6 +62,12 @@ export default function ThemeBuilder({ theme }: ThemeBuilderProps) {
       fontFamily: {
         sans: ["${theme.typography.sans}", "sans-serif"],
         heading: ["${theme.typography.heading}", "sans-serif"],
+      },
+      fontSize: {
+        sm: "${theme.typography.fontSize.sm}px",
+        md: "${theme.typography.fontSize.md}px",
+        lg: "${theme.typography.fontSize.lg}px",
+        xl: "${theme.typography.fontSize.xl}px",
       },
       fontWeight: {
         light: ${theme.typography.fontWeight_light},

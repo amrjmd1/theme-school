@@ -16,28 +16,7 @@ import ThemeBuilder from "@/components/ThemeBuilder";
 import Header from "@/components/Header";
 import { BorderWidth } from "@/components/borderWidth";
 import { DesignSystemSection } from "@/components/DesignSystemPreview";
-
-interface Theme {
-  colors: {
-    light: Record<string, string>;
-    dark: Record<string, string>;
-  };
-  typography: {
-    sans: string;
-    heading: string;
-    fontSize: string;
-    fontWeight_light: string;
-    fontWeight_normal: string;
-    fontWeight_semibold: string;
-    fontWeight_bold: string;
-    lineHeight_normal: string;
-    lineHeight_relaxed: string;
-    lineHeight_tight: string;
-  };
-  spacing: Record<string, number>;
-  borderRadius: Record<string, number>;
-  borderWidth: Record<string, number>;
-}
+import Theme from "@/types/Theme";
 
 export default function ThemeBuilderx() {
   const [theme, setTheme] = useState<Theme>({
@@ -66,9 +45,9 @@ export default function ThemeBuilderx() {
       },
     },
     typography: {
-      sans: "Helvetica", // Facebook's default font stack
       heading: "Helvetica", // Same for headings
-      fontSize: "16px", // Base font size
+      sans: "Helvetica", // Facebook's default font stack
+      fontSize: { sm: 4, md: 8, lg: 16, xl: 24 },
       fontWeight_light: "300",
       fontWeight_normal: "400",
       fontWeight_semibold: "600",
@@ -104,7 +83,8 @@ export default function ThemeBuilderx() {
     section: string,
     mode: "light" | "dark" | undefined,
     key: string,
-    value: string | number
+    value: string | number,
+    deepKey?: string
   ) => {
     setTheme((prevTheme) => {
       if (section === "colors" && mode) {
@@ -120,6 +100,17 @@ export default function ThemeBuilderx() {
           },
         };
       } else if (section !== "colors") {
+        if (key === "fontSize")
+          return {
+            ...prevTheme,
+            [section]: {
+              ...prevTheme[section as keyof Theme],
+              fontSize: {
+                ...prevTheme.typography.fontSize,
+                [deepKey || ""]: value,
+              },
+            },
+          };
         return {
           ...prevTheme,
           [section]: {

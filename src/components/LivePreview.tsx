@@ -14,18 +14,10 @@ import {
   LogOut,
 } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import Theme from "@/types/Theme";
 
 interface LivePreviewProps {
-  theme: {
-    colors: {
-      light: Record<string, string>;
-      dark: Record<string, string>;
-    };
-    typography: Record<string, string>;
-    spacing: Record<string, number>;
-    borderRadius: Record<string, number>;
-    borderWidth: Record<string, number>;
-  };
+  theme: Theme;
   isDarkMode: boolean;
   onToggleDarkMode: (value: boolean) => void;
 }
@@ -42,7 +34,7 @@ export function LivePreview({
     backgroundColor: colors.background,
     color: colors.foreground,
     fontFamily: typography.sans,
-    fontSize: typography.fontSize,
+    fontSize: typography.fontSize.md,
     fontWeight: typography.fontWeight_normal,
     lineHeight: typography.lineHeight_normal,
   };
