@@ -6,15 +6,23 @@ interface DesignSystemSectionProps {
 }
 
 export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
+  const headingStyle = { fontFamily: theme.typography.heading };
   return (
-    <div className="flex flex-col h-full overflow-y-auto p-4 gap-6">
+    <div
+      className="flex flex-col h-full overflow-y-auto p-4 gap-6"
+      style={{
+        fontFamily: theme.typography.sans,
+      }}
+    >
       {/* Colors Section */}
       <div className="border-b border-gray-200 pb-4">
-        <h2 className="text-lg font-bold mb-4">Colors</h2>
-        <div className="p-4">
+        <h2 className="text-lg font-bold mb-4" style={headingStyle}>
+          Colors
+        </h2>
+        <div className="p-4 pb-0">
           {Object.entries(theme.colors.light).map(([key]) => (
-            <div key={key} className="flex flex-col gap-2">
-              <span className="font-medium">{key}</span>
+            <div key={key} className="flex flex-col gap-2 mb-4">
+              <span className="font-medium capitalize">{key}</span>
               <div className="flex gap-4">
                 {/* Light Mode Color */}
                 <div className="flex items-center gap-2">
@@ -50,21 +58,26 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
 
       {/* Typography Section */}
       <div>
-        <h2 className="text-lg font-bold mb-4">Typography</h2>
-        <div className="p-4">
+        <h2 className="text-lg font-bold mb-4" style={headingStyle}>
+          Typography
+        </h2>
+        <div className="p-4 pb-0">
           {Object.entries({
-            sans: theme.typography.sans,
             heading: theme.typography.heading,
+            sans: theme.typography.sans,
           }).map(([key, value]) => {
             return (
-              <div key={key} className="flex flex-col gap-2">
+              <div
+                key={key}
+                className="flex flex-col gap-2 m-6"
+                style={{ fontFamily: value }}
+              >
                 <span className="font-medium">Font Family of {key}</span>
                 <span
                   style={{
-                    fontFamily: value,
                     fontSize:
                       theme.typography.fontSize[
-                        key === "heading" ? "xl" : "md"
+                        key === "heading" ? "xl" : "lg"
                       ] + "px",
                   }}
                 >
@@ -76,12 +89,14 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
         </div>
       </div>
       <div className="border-b border-gray-200 p-4">
-        <h2 className="text-lg font-bold mb-4">Font Size</h2>
+        <h2 className="text-lg font-bold mb-4" style={headingStyle}>
+          Font Size
+        </h2>
         <div className="p-4">
           {Object.entries(theme.typography.fontSize).map(([key, value]) => (
             <div key={key} className="flex flex-col gap-2">
               <div className="flex items-center gap-4">
-                <span className="text-lg font-medium">{key}</span>
+                <span className="text-lg font-medium capitalize">{key}</span>
                 <span className="text-sm">{value}px</span>
               </div>
               <div className="pb-5">
@@ -99,7 +114,9 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
         </div>
       </div>
       <div className="border-b border-gray-200 p-4">
-        <h2 className="text-lg font-bold mb-4">Font Weight</h2>
+        <h2 className="text-lg font-bold mb-4" style={headingStyle}>
+          Font Weight
+        </h2>
         <div className="p-4">
           {Object.entries(theme.typography)
             .filter(([key]) => key.startsWith("fontWeight"))
@@ -108,7 +125,9 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
               return (
                 <div key={key} className="flex flex-col gap-2">
                   <div className="flex items-center gap-4">
-                    <span className="text-lg font-medium">{name}</span>
+                    <span className="text-lg font-medium capitalize">
+                      {name}
+                    </span>
                     <span className="text-sm">{value}</span>
                   </div>
                   <div className="flex items-center gap-4">
@@ -130,16 +149,20 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
       </div>
       {/* Line Height Section */}
       <div className="border-b border-gray-200 p-4">
-        <h2 className="text-lg font-bold mb-4">Line Height</h2>
-        <div className="p-4">
+        <h2 className="text-lg font-bold mb-4" style={headingStyle}>
+          Line Height
+        </h2>
+        <div className="p-4 pb-0">
           {Object.entries(theme.typography)
             .filter(([key]) => key.startsWith("lineHeight"))
             .map(([key, value]) => {
               const name = key.replace("lineHeight_", "");
               return (
-                <div key={key} className="flex flex-col gap-2">
+                <div key={key} className="flex flex-col gap-2 mb-4">
                   <div className="flex items-center gap-4">
-                    <span className="text-lg font-medium">{name}</span>
+                    <span className="text-lg font-medium capitalize">
+                      {name}
+                    </span>
                     <span className="text-sm">{value}</span>
                   </div>
                   <div className="flex items-stretch gap-2">
@@ -181,12 +204,14 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
 
       {/* Spacing Section */}
       <div className="border-b border-gray-200 pb-4">
-        <h2 className="text-lg font-bold mb-4">Spacing</h2>
-        <div className="p-4">
+        <h2 className="text-lg font-bold mb-4" style={headingStyle}>
+          Spacing
+        </h2>
+        <div className="p-4 pb-0">
           {Object.entries(theme.spacing).map(([key, value]) => (
-            <div key={key} className="flex flex-col gap-2">
+            <div key={key} className="flex flex-col gap-2 m-4">
               <div className="flex items-center gap-4">
-                <span className="text-lg font-medium">{key}</span>
+                <span className="text-lg font-medium capitalize">{key}</span>
                 <span className="text-sm">{value}px</span>
               </div>
               <div className="flex items-center">
@@ -215,17 +240,23 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
 
       {/* Border Radius Section */}
       <div className="border-b border-gray-200 pb-4">
-        <h2 className="text-lg font-bold mb-4">Border Radius</h2>
-        <div className="p-4">
+        <h2 className="text-lg font-bold mb-4" style={headingStyle}>
+          Border Radius
+        </h2>
+        <div className="p-4 pb-0">
           {Object.entries(theme.borderRadius).map(([key, value]) => (
-            <div key={key} className="flex flex-col gap-2">
+            <div key={key} className="flex flex-col gap-2 mb-4">
               <div className="flex items-center gap-4">
-                <span className="text-lg font-medium">{key}</span>
+                <span className="text-lg font-medium capitalize">{key}</span>
                 <span className="text-sm">{value}px</span>
               </div>
               <div
-                className="w-20 h-20 bg-primary"
-                style={{ borderRadius: `${value}px` }}
+                className="w-20 h-20 border-dashed"
+                style={{
+                  borderRadius: `${value}px`,
+                  borderWidth: `${theme.borderWidth.md}px`,
+                  borderColor: theme.colors.light.secondary,
+                }}
               />
             </div>
           ))}
@@ -234,17 +265,23 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
 
       {/* Border Width Section */}
       <div>
-        <h2 className="text-lg font-bold mb-4">Border Width</h2>
-        <div className="p-4">
+        <h2 className="text-lg font-bold mb-4" style={headingStyle}>
+          Border Width
+        </h2>
+        <div className="p-4 pb-0">
           {Object.entries(theme.borderWidth).map(([key, value]) => (
-            <div key={key} className="flex flex-col gap-2">
+            <div key={key} className="flex flex-col gap-2 mb-4">
               <div className="flex items-center gap-4">
-                <span className="text-lg font-medium">{key}</span>
+                <span className="text-lg font-medium capitalize">{key}</span>
                 <span className="text-sm">{value}px</span>
               </div>
               <div
                 className="w-20 h-20 bg-card border"
-                style={{ borderWidth: `${value}px` }}
+                style={{
+                  borderWidth: `${value}px`,
+                  borderColor: theme.colors.light.border,
+                  borderRadius: theme.borderRadius.lg,
+                }}
               />
             </div>
           ))}
