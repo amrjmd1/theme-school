@@ -103,7 +103,7 @@ export function LivePreview({
               textAlign: "center",
               padding: `${spacing.md}px`,
               fontFamily: typography.heading,
-              fontSize: "1.5rem",
+              fontSize: typography.fontSize.lg,
             }}
           >
             LOGO
@@ -265,7 +265,7 @@ export function LivePreview({
                 <span>+20% this month</span>
                 <h3
                   style={{
-                    fontSize: "22px",
+                    fontSize: typography.fontSize.xl,
                     color: colors.secondary,
                     fontWeight: typography.fontWeight_bold,
                   }}
