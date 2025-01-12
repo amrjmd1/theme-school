@@ -10,6 +10,7 @@ const Icons = {
   tsx: "/react.png",
   css: "/css.png",
   ts: "/ts.png",
+  md: "/md.png",
 } satisfies Record<string, string>;
 
 const FileIcon = ({ width = 18, height = 18, filename }: FileIconProps) => {

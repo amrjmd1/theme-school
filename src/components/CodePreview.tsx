@@ -23,6 +23,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
 import FileIcon from "./FileIcon";
 
 interface CodePreviewProps {
@@ -152,8 +153,8 @@ export function CodePreview({ code, fileName }: CodePreviewProps) {
             background: "transparent",
             fontSize: "0.875rem",
           }}
-          wrapLines={true}
-          showLineNumbers={true}
+          wrapLines
+          showLineNumbers
           lineProps={(lineNumber) => ({
             style: {
               backgroundColor: [0].includes(lineNumber)
@@ -161,9 +162,12 @@ export function CodePreview({ code, fileName }: CodePreviewProps) {
                 : "transparent",
               display: "block",
               width: "100%",
+              // wordBreak: "break-all",
+              whiteSpace: "pre-wrap",
             },
           })}
           PreTag="div"
+          lineNumberContainerStyle={{ backgroundColor: "red" }}
         >
           {code}
         </SyntaxHighlighter>

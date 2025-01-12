@@ -235,6 +235,135 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     </ThemeContext.Provider>
   );
 };`,
+      "README.md": `# Tailwind CSS Configuration Guide
+
+This guide explains how to use the custom Tailwind CSS configuration in your project. It includes custom colors, fonts, spacing, border radius, and border width, with support for light and dark modes.
+
+---
+
+## Colors
+
+### Background
+- Light: <::>bg-background-light<::>
+- Dark: <::>dark:bg-background-dark<::>
+
+### Foreground (Text)
+- Light: <::>text-foreground-light<::>
+- Dark: <::>dark:text-foreground-dark<::>
+
+### Primary
+- Light: <::>bg-primary-light<::>, <::>text-primary-light<::>
+- Dark: <::>dark:bg-primary-dark<::>, <::>dark:text-primary-dark<::>
+
+### Secondary
+- Light: <::>bg-secondary-light<::>, <::>text-secondary-light<::>
+- Dark: <::>dark:bg-secondary-dark<::>, <::>dark:text-secondary-dark<::>
+
+### Accent
+- Light: <::>bg-accent-light<::>, <::>text-accent-light<::>
+- Dark: <::>dark:bg-accent-dark<::>, <::>dark:text-accent-dark<::>
+
+### Muted
+- Light: <::>bg-muted-light<::>, <::>text-muted-light<::>
+- Dark: <::>dark:bg-muted-dark<::>, <::>dark:text-muted-dark<::>
+
+### Card
+- Light: <::>bg-card-light<::>, <::>text-card-light<::>
+- Dark: <::>dark:bg-card-dark<::>, <::>dark:text-card-dark<::>
+
+### Card Foreground
+- Light: <::>bg-cardForeground-light<::>, <::>text-cardForeground-light<::>
+- Dark: <::>dark:bg-cardForeground-dark<::>, <::>dark:text-cardForeground-dark<::>
+
+### Border
+- Light: <::>border-border-light<::>
+- Dark: <::>dark:border-border-dark<::>
+
+---
+
+## Fonts
+
+### Font Family
+- Sans: <::>font-sans<::>
+- Heading: <::>font-heading<::>
+
+### Font Size
+- Small: <::>text-sm<::> (8px)
+- Medium: <::>text-md<::> (12px)
+- Large: <::>text-lg<::> (16px)
+- Extra Large: <::>text-xl<::> (24px)
+
+### Font Weight
+- Light: <::>font-light<::> (300)
+- Normal: <::>font-normal<::> (400)
+- Semibold: <::>font-semibold<::> (600)
+- Bold: <::>font-bold<::> (700)
+
+### Line Height
+- Normal: <::>leading-normal<::> (1.5)
+- Relaxed: <::>leading-relaxed<::> (1.75)
+- Tight: <::>leading-tight<::> (1.25)
+
+---
+
+## Spacing
+
+### Padding and Margin
+- Small: <::>p-sm<::>, <::>m-sm<::> (8px)
+- Medium: <::>p-md<::>, <::>m-md<::> (16px)
+- Large: <::>p-lg<::>, <::>m-lg<::> (24px)
+- Extra Large: <::>p-xl<::>, <::>m-xl<::> (32px)
+- 2X Large: <::>p-2xl<::>, <::>m-2xl<::> (40px)
+
+### Gap
+- Small: <::>gap-sm<::> (8px)
+- Medium: <::>gap-md<::> (16px)
+- Large: <::>gap-lg<::> (24px)
+- Extra Large: <::>gap-xl<::> (32px)
+- 2X Large: <::>gap-2xl<::> (40px)
+
+---
+
+## Border Radius
+
+- Small: <::>rounded-sm<::> (4px)
+- Medium: <::>rounded-md<::> (8px)
+- Large: <::>rounded-lg<::> (16px)
+- Extra Large: <::>rounded-xl<::> (24px)
+
+---
+
+## Border Width
+
+- Small: <::>border-sm<::> (0.3px)
+- Medium: <::>border-md<::> (0.5px)
+- Large: <::>border-lg<::> (0.9px)
+- Extra Large: <::>border-xl<::> (2.4px)
+
+---
+
+## Dark Mode
+
+Enable dark mode by adding the <::>dark<::> class to your HTML element:
+
+<::>html
+<html class="dark">
+  <!-- Your content -->
+</html>
+<::>
+
+### Example Usage
+<::>html
+<div class="bg-background-light dark:bg-background-dark">
+  <p class="text-foreground-light dark:text-foreground-dark">Hello, world!</p>
+</div>
+<::>
+
+---
+
+## Conclusion
+
+Use the provided classes to apply custom styles in your project. Refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs) for more details.`.replaceAll('<::>', '`'),
     };
   };
 
@@ -276,6 +405,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
                     ],
                   },
                   { name: "tailwind.config.ts", type: "file" },
+                  { name: "README.md", type: "file" },
                 ],
               },
             ]}

@@ -215,7 +215,7 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
                 <span className="text-sm">{value}px</span>
               </div>
               <div className="flex items-center">
-                <div className="w-8 h-8 bg-secondary rounded-lg border-r-[1px] border-[#2ecc7170]" />
+                <div className="w-8 h-8 bg-secondary rounded-lg border-r-[1px] border-[#2ecc7170] border-dashed" />
                 <div
                   style={{
                     width: value + "px",
@@ -223,7 +223,7 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
                     backgroundColor: "#2ecc7170",
                   }}
                 />
-                <div className="w-8 h-8 bg-secondary rounded-lg border-x-[1px] border-[#2ecc7170]" />
+                <div className="w-8 h-8 bg-secondary rounded-lg border-x-[1px] border-[#2ecc7170] border-dashed" />
                 <div
                   style={{
                     width: value + "px",
@@ -231,7 +231,7 @@ export function DesignSystemSection({ theme }: DesignSystemSectionProps) {
                     backgroundColor: "#2ecc7170",
                   }}
                 />
-                <div className="w-8 h-8 bg-secondary rounded-lg border-l-[1px] border-[#2ecc7170]" />
+                <div className="w-8 h-8 bg-secondary rounded-lg border-l-[1px] border-[#2ecc7170] border-dashed" />
               </div>
             </div>
           ))}
