@@ -284,61 +284,61 @@ This guide explains how to use the custom Tailwind CSS configuration in your pro
 ## Fonts
 
 ### Font Family
-- Sans: <::>font-sans<::>
-- Heading: <::>font-heading<::>
+- Heading: <::>${theme.typography.heading}<::>
+- Sans: <::>${theme.typography.sans}<::>
 
 ### Font Size
-- Small: <::>text-sm<::> (8px)
-- Medium: <::>text-md<::> (12px)
-- Large: <::>text-lg<::> (16px)
-- Extra Large: <::>text-xl<::> (24px)
+- Small: <::>text-sm<::> (${theme.typography.fontSize.sm}px)
+- Medium: <::>text-md<::> (${theme.typography.fontSize.md}px)
+- Large: <::>text-lg<::> (${theme.typography.fontSize.lg}px)
+- Extra Large: <::>text-xl<::> (${theme.typography.fontSize.xl}px)
 
 ### Font Weight
-- Light: <::>font-light<::> (300)
-- Normal: <::>font-normal<::> (400)
-- Semibold: <::>font-semibold<::> (600)
-- Bold: <::>font-bold<::> (700)
+- Light: <::>font-light<::> (${theme.typography.fontWeight_light})
+- Normal: <::>font-normal<::> (${theme.typography.fontWeight_normal})
+- Semibold: <::>font-semibold<::> (${theme.typography.fontWeight_semibold})
+- Bold: <::>font-bold<::> (${theme.typography.fontWeight_bold})
 
 ### Line Height
-- Normal: <::>leading-normal<::> (1.5)
-- Relaxed: <::>leading-relaxed<::> (1.75)
-- Tight: <::>leading-tight<::> (1.25)
+- Normal: <::>leading-normal<::> (${theme.typography.lineHeight_normal})
+- Relaxed: <::>leading-relaxed<::> (${theme.typography.lineHeight_relaxed})
+- Tight: <::>leading-tight<::> (${theme.typography.lineHeight_tight})
 
 ---
 
 ## Spacing
 
 ### Padding and Margin
-- Small: <::>p-sm<::>, <::>m-sm<::> (8px)
-- Medium: <::>p-md<::>, <::>m-md<::> (16px)
-- Large: <::>p-lg<::>, <::>m-lg<::> (24px)
-- Extra Large: <::>p-xl<::>, <::>m-xl<::> (32px)
-- 2X Large: <::>p-2xl<::>, <::>m-2xl<::> (40px)
+- Small: <::>p-sm<::>, <::>m-sm<::> (${theme.spacing.sm}px)
+- Medium: <::>p-md<::>, <::>m-md<::> (${theme.spacing.md}px)
+- Large: <::>p-lg<::>, <::>m-lg<::> (${theme.spacing.lg}px)
+- Extra Large: <::>p-xl<::>, <::>m-xl<::> (${theme.spacing.xl}px)
+- 2X Large: <::>p-2xl<::>, <::>m-2xl<::> (${theme.spacing['2xl']}px)
 
 ### Gap
-- Small: <::>gap-sm<::> (8px)
-- Medium: <::>gap-md<::> (16px)
-- Large: <::>gap-lg<::> (24px)
-- Extra Large: <::>gap-xl<::> (32px)
-- 2X Large: <::>gap-2xl<::> (40px)
+- Small: <::>gap-sm<::> (${theme.spacing.sm}px)
+- Medium: <::>gap-md<::> (${theme.spacing.md}px)
+- Large: <::>gap-lg<::> (${theme.spacing.lg}px)
+- Extra Large: <::>gap-xl<::> (${theme.spacing.xl}px)
+- 2X Large: <::>gap-2xl<::> (${theme.spacing['2xl']}px)
 
 ---
 
 ## Border Radius
 
-- Small: <::>rounded-sm<::> (4px)
-- Medium: <::>rounded-md<::> (8px)
-- Large: <::>rounded-lg<::> (16px)
-- Extra Large: <::>rounded-xl<::> (24px)
+- Small: <::>rounded-sm<::> (${theme.borderRadius.sm}px)
+- Medium: <::>rounded-md<::> (${theme.borderRadius.md}px)
+- Large: <::>rounded-lg<::> (${theme.borderRadius.lg}px)
+- Extra Large: <::>rounded-xl<::> (${theme.borderRadius.xl}px)
 
 ---
 
 ## Border Width
 
-- Small: <::>border-sm<::> (0.3px)
-- Medium: <::>border-md<::> (0.5px)
-- Large: <::>border-lg<::> (0.9px)
-- Extra Large: <::>border-xl<::> (2.4px)
+- Small: <::>border-sm<::> (${theme.borderWidth.sm}px)
+- Medium: <::>border-md<::> (${theme.borderWidth.md}px)
+- Large: <::>border-lg<::> (${theme.borderWidth.lg}px)
+- Extra Large: <::>border-xl<::> (${theme.borderWidth.xl}px)
 
 ---
 

@@ -162,12 +162,10 @@ export function CodePreview({ code, fileName }: CodePreviewProps) {
                 : "transparent",
               display: "block",
               width: "100%",
-              // wordBreak: "break-all",
               whiteSpace: "pre-wrap",
             },
           })}
           PreTag="div"
-          lineNumberContainerStyle={{ backgroundColor: "red" }}
         >
           {code}
         </SyntaxHighlighter>
