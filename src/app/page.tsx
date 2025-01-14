@@ -178,10 +178,10 @@ export default function ThemeBuilderx() {
                 { value: "code", name: "Code", icon: Code },
               ].map((tab) => (
                 <TabsTrigger value={tab.value} key={tab.name}>
-                  <tab.icon
-                    className={`h-4 w-4 me-${tab.value === activeTab ? 2 : 0}`}
-                  />
-                  {tab.value === activeTab && tab.name}
+                  <tab.icon className="h-4 w-4" />
+                  {tab.value === activeTab && (
+                    <span className="ms-2">{tab.name}</span>
+                  )}
                 </TabsTrigger>
               ))}
             </TabsList>
