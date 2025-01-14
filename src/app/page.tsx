@@ -10,13 +10,14 @@ import { BorderRadius } from "@/components/BorderRadius";
 import { LivePreview } from "@/components/LivePreview";
 import { Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { TabsList } from "@radix-ui/react-tabs";
-import { Code, Eye, Frame } from "lucide-react";
+import { Code, Frame, Laptop, Smartphone } from "lucide-react";
 import Footer from "@/components/Footer";
 import ThemeBuilder from "@/components/ThemeBuilder";
 import Header from "@/components/Header";
 import { BorderWidth } from "@/components/borderWidth";
 import { DesignSystemSection } from "@/components/DesignSystemPreview";
 import Theme from "@/types/Theme";
+import MobileReview from "@/components/MobileReview";
 
 export default function ThemeBuilderx() {
   const [theme, setTheme] = useState<Theme>({
@@ -45,8 +46,8 @@ export default function ThemeBuilderx() {
       },
     },
     typography: {
-      heading: "Helvetica", // Same for headings
-      sans: "Helvetica", // Facebook's default font stack
+      heading: "Helvetica",
+      sans: "Helvetica",
       fontSize: { sm: 8, md: 12, lg: 16, xl: 24 },
       fontWeight_light: "300",
       fontWeight_normal: "400",
@@ -78,6 +79,7 @@ export default function ThemeBuilderx() {
   });
 
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeTab, setActiveTab] = useState("DesignSystem");
 
   const updateTheme = (
     section: string,
@@ -119,7 +121,7 @@ export default function ThemeBuilderx() {
           },
         };
       }
-      return prevTheme; // No changes
+      return prevTheme;
     });
   };
 
@@ -162,18 +164,26 @@ export default function ThemeBuilderx() {
             </CardContent>
           </ScrollArea>
         </Card>
-        <Tabs defaultValue="DesignSystem">
+        <Tabs defaultValue="DesignSystem" onValueChange={setActiveTab}>
           <div className="flex items-center space-x-2 justify-between">
             <TabsList className="g">
-              <TabsTrigger value="DesignSystem">
-                <Frame className="h-4 w-4 me-2" /> Design System
-              </TabsTrigger>
-              <TabsTrigger value="preview">
-                <Eye className="h-4 w-4 me-2" /> Preview
-              </TabsTrigger>
-              <TabsTrigger value="code">
-                <Code className="h-4 w-4 me-2" /> Code
-              </TabsTrigger>
+              {[
+                { value: "DesignSystem", name: "Design System", icon: Frame },
+                { value: "web_preview", name: "Web Preview", icon: Laptop },
+                {
+                  value: "mo_preview",
+                  name: "Mobile Preview",
+                  icon: Smartphone,
+                },
+                { value: "code", name: "Code", icon: Code },
+              ].map((tab) => (
+                <TabsTrigger value={tab.value} key={tab.name}>
+                  <tab.icon
+                    className={`h-4 w-4 me-${tab.value === activeTab ? 2 : 0}`}
+                  />
+                  {tab.value === activeTab && tab.name}
+                </TabsTrigger>
+              ))}
             </TabsList>
           </div>
           <TabsContent value="DesignSystem" className="mt-4">
@@ -183,7 +193,7 @@ export default function ThemeBuilderx() {
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="preview" className="mt-4">
+          <TabsContent value="web_preview" className="mt-4">
             <Card className="h-[calc(100vh-15rem)] overflow-hidden">
               <CardContent className="p-0 h-full">
                 <LivePreview
@@ -191,6 +201,13 @@ export default function ThemeBuilderx() {
                   isDarkMode={isDarkMode}
                   onToggleDarkMode={setIsDarkMode}
                 />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="mo_preview" className="mt-4">
+            <Card className="h-[calc(100vh-15rem)] overflow-hidden bg-transparent border-none shadow-none">
+              <CardContent className="p-0 h-full">
+                <MobileReview />
               </CardContent>
             </Card>
           </TabsContent>

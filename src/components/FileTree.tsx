@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { ChevronRight, ChevronDown } from "lucide-react";
 import FileIcon from "./FileIcon";
-
-interface FileNode {
-  name: string;
-  type: "file" | "folder";
-  children?: FileNode[];
-}
+import FileNode from "@/types/FileNode";
 
 interface FileTreeProps {
   files: FileNode[];
@@ -15,12 +10,13 @@ interface FileTreeProps {
 
 export function FileTree({ files, onSelect }: FileTreeProps) {
   const [openFolders, setOpenFolders] = useState<string[]>([
-    "Your App",
+    "tailwind_app",
     "src",
     "components",
     "context",
     "styles",
     "app",
+    "reactnative_app"
   ]);
 
   const toggleFolder = (folderName: string) => {

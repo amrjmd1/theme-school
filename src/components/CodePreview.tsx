@@ -29,30 +29,47 @@ import FileIcon from "./FileIcon";
 interface CodePreviewProps {
   code: string;
   fileName: string;
+  activeFrameWork: string;
+  onChangeFrameWork: (lang: string) => void;
 }
 
-const frameworks = [
+interface Framework {
+  activeFrameWork: string;
+  label: string;
+  disabled: boolean;
+}
+
+const frameworks: Framework[] = [
   {
-    value: "tailwindcss",
+    activeFrameWork: "tailwindcss",
     label: "Tailwind CSS",
     disabled: false,
   },
   {
-    value: "shadcn",
+    activeFrameWork: "reactnative",
+    label: "React Native Cli",
+    disabled: false,
+  },
+  {
+    activeFrameWork: "shadcn",
     label: "Shadcn/ui",
     disabled: true,
   },
   {
-    value: "nextui",
+    activeFrameWork: "nextui",
     label: "Next UI",
     disabled: true,
   },
 ];
 
-export function CodePreview({ code, fileName }: CodePreviewProps) {
+export function CodePreview({
+  code,
+  fileName,
+  activeFrameWork,
+  onChangeFrameWork,
+}: CodePreviewProps) {
   const [copySuccess, setCopySuccess] = useState(false);
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("tailwindcss");
 
   const handleCopy = async () => {
     try {
@@ -81,9 +98,11 @@ export function CodePreview({ code, fileName }: CodePreviewProps) {
                 aria-expanded={open}
                 className="w-[200px] justify-between text-gray-300"
               >
-                {value
-                  ? frameworks.find((framework) => framework.value === value)
-                      ?.label
+                {activeFrameWork
+                  ? frameworks.find(
+                      (framework) =>
+                        framework.activeFrameWork === activeFrameWork
+                    )?.label
                   : "Select framework..."}
                 <ChevronsUpDown className="opacity-50" />
               </Button>
@@ -95,19 +114,24 @@ export function CodePreview({ code, fileName }: CodePreviewProps) {
                   <CommandGroup>
                     {frameworks.map((framework) => (
                       <CommandItem
-                        key={framework.value}
-                        value={framework.value}
-                        onSelect={(currentValue) => {
-                          setValue(currentValue === value ? "" : currentValue);
+                        key={framework.activeFrameWork}
+                        value={framework.activeFrameWork}
+                        onSelect={(currentactiveFrameWork: string) => {
+                          onChangeFrameWork(
+                            currentactiveFrameWork === activeFrameWork
+                              ? ""
+                              : currentactiveFrameWork
+                          );
                           setOpen(false);
                         }}
                         disabled={framework.disabled}
+                        className="cursor-pointer"
                       >
-                        {framework.label}
+                        <span>{framework.label}</span>
                         <Check
                           className={cn(
                             "ml-auto",
-                            value === framework.value
+                            activeFrameWork === framework.activeFrameWork
                               ? "opacity-100"
                               : "opacity-0"
                           )}
