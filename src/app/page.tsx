@@ -207,7 +207,7 @@ export default function ThemeBuilderx() {
           <TabsContent value="mo_preview" className="mt-4">
             <Card className="h-[calc(100vh-15rem)] overflow-hidden bg-transparent border-none shadow-none">
               <CardContent className="p-0 h-full">
-                <MobileReview />
+                <MobileReview theme={theme} />
               </CardContent>
             </Card>
           </TabsContent>
