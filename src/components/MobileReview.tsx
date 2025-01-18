@@ -33,6 +33,7 @@ const MobileReview = ({ theme }: MobileReviewProps) => {
                 height: "100%",
                 width: "100%",
                 backgroundColor: theme.colors.light.background,
+                fontFamily: theme.typography.sans,
               }}
             >
               <header
@@ -44,7 +45,7 @@ const MobileReview = ({ theme }: MobileReviewProps) => {
                   paddingTop:
                     theme.spacing.md + (device === "iPhone X" ? 30 : 0),
                   backgroundColor: theme.colors.light.card,
-                  borderBottom: `1px solid ${theme.colors.light.border}`,
+                  borderBottom: `${theme.borderWidth.md}px solid ${theme.colors.light.border}`,
                 }}
               >
                 {/* Logo */}
@@ -53,6 +54,7 @@ const MobileReview = ({ theme }: MobileReviewProps) => {
                     color: theme.colors.light.primary,
                     fontSize: theme.typography.fontSize.xl,
                     fontWeight: theme.typography.fontWeight_bold,
+                    fontFamily: theme.typography.heading,
                   }}
                 >
                   Logo
@@ -115,7 +117,7 @@ const MobileReview = ({ theme }: MobileReviewProps) => {
                   style={{
                     padding: theme.spacing.lg,
                     backgroundColor: theme.colors.light.card,
-                    border: `1px solid ${theme.colors.light.border}`,
+                    border: `${theme.borderWidth.md}px solid ${theme.colors.light.border}`,
                     borderRadius: theme.borderRadius.md,
                     marginBottom: theme.spacing.md,
                   }}
@@ -166,7 +168,7 @@ const MobileReview = ({ theme }: MobileReviewProps) => {
                       style={{
                         padding: theme.spacing.md,
                         backgroundColor: theme.colors.light.card,
-                        border: `1px solid ${theme.colors.light.border}`,
+                        border: `${theme.borderWidth.md}px solid ${theme.colors.light.border}`,
                         borderRadius: theme.borderRadius.md,
                         marginBottom: theme.spacing.md,
                         flex: 1,
@@ -232,7 +234,7 @@ const MobileReview = ({ theme }: MobileReviewProps) => {
                   alignItems: "center",
                   padding: theme.spacing.md,
                   backgroundColor: theme.colors.light.card,
-                  borderTop: `1px solid ${theme.colors.light.border}`,
+                  borderTop: `${theme.borderWidth.sm}px solid ${theme.colors.light.border}`,
                 }}
               >
                 {/* Navbar Items */}
